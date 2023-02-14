@@ -85,7 +85,7 @@ class JobItemDetails extends Component {
       {
         apiStatus: apiStatusConstants.initial,
       },
-      this.getItemDetails,
+      this.getItemDetails(),
     )
   }
 
@@ -99,7 +99,11 @@ class JobItemDetails extends Component {
         />
         <h1 className="">Oops! Something Went Wrong</h1>
         <p className="">We cannot seem to find the page you are looking for</p>
-        <button type="button" className="button retry" onClick={this.retry}>
+        <button
+          type="button"
+          className="button retry"
+          onClick={this.getItemDetails}
+        >
           Retry
         </button>
       </div>
@@ -115,7 +119,7 @@ class JobItemDetails extends Component {
           <img
             src={each.companyLogoUrl}
             alt="similar job company logo"
-            className="company"
+            className="similar-image"
           />
 
           <div className="title-container">
@@ -180,7 +184,7 @@ class JobItemDetails extends Component {
             <img
               src={companyLogoUrl}
               alt="job details company logo"
-              className="company"
+              className="job-image"
             />
 
             <div className="title-container">

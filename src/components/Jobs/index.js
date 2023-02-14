@@ -103,6 +103,10 @@ class Jobs extends Component {
         jobsList: updatedData,
         apiStatus: apiStatusConstants.success,
       })
+    } else {
+      this.setState({
+        apiStatus: apiStatusConstants.failure,
+      })
     }
   }
 
@@ -129,10 +133,6 @@ class Jobs extends Component {
       }
       this.setState({
         profile: updateData,
-      })
-    } else {
-      this.setState({
-        apiStatus: apiStatusConstants.failure,
       })
     }
   }
@@ -200,12 +200,9 @@ class Jobs extends Component {
   }
 
   filterEmp = event => {
-    this.setState(
-      {
-        empType: event.target.value,
-      },
-      this.getJobItems,
-    )
+    this.setState({
+      empType: event.isChecked,
+    })
   }
 
   renderProfileRoute = () => {
@@ -220,35 +217,39 @@ class Jobs extends Component {
           <p className="role">{shortBio}</p>
         </div>
         <h1 className="head">Type of Employment</h1>
-        <div className="employee-type">
+        <ul className="employee-type">
           {employmentTypesList.map(each => (
-            <>
-              <label>
+            <li key={each.employmentTypeId}>
+              <label htmlFor={each.employmentTypeId}>
                 <input
                   type="checkbox"
                   className="emp-type"
-                  key={each.employmentTypeId}
+                  id={each.employmentTypeId}
+                  onChange={this.filterEmp}
                 />
                 {each.label}
               </label>
-            </>
+            </li>
           ))}
-        </div>
+        </ul>
         <h1 className="">Salary Range</h1>
-        <div className="employee-type">
+        <ul className="employee-type">
           {salaryRangesList.map(each => (
-            <div className="salary-item">
+            <li className="salary-item" key={each.salaryRangeId}>
               <label htmlFor={each.salaryRangeId}>
                 <input
                   type="radio"
                   className="emp-type"
-                  key={each.salaryRangeId}
+                  value={each.salaryRangeId}
+                  onChange={this.filterSalary}
+                  name="salary"
+                  id={each.salaryRangeId}
                 />
                 {each.label}
               </label>
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     )
   }
@@ -259,7 +260,6 @@ class Jobs extends Component {
         apiStatus: apiStatusConstants.initial,
       },
       this.getJobItems(),
-      this.getProfile(),
     )
   }
 
@@ -273,7 +273,11 @@ class Jobs extends Component {
         />
         <h1 className="">Oops! Something Went Wrong</h1>
         <p className="">We cannot seem to find the page you are looking for</p>
-        <button type="button" className="button retry" onClick={this.retry}>
+        <button
+          type="button"
+          className="button retry"
+          onClick={this.getJobItems}
+        >
           Retry
         </button>
       </div>
@@ -296,6 +300,8 @@ class Jobs extends Component {
   }
 
   render() {
+    const {empType} = this.state
+    console.log(empType)
     return (
       <div className="jobs-container">
         <Header />
