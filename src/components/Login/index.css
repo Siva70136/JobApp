@@ -1,0 +1,53 @@
+.app-container {
+  background-color: black;
+  height: 100vh;
+  color: white;
+  font-family: 'Roboto';
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login-container {
+  background-color: #2c364c;
+  padding: 20px;
+  width: 300px;
+  height: 300px;
+}
+.website-logo {
+  width: 60%;
+  margin-bottom: 10px;
+}
+.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.label {
+  margin-bottom: 10px;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.box {
+  background-color: #2c364c;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 3px;
+}
+
+.login-button {
+  padding: 10px;
+  border-radius: 3px;
+  background-color: #6366f1;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: white;
+}
+
+.username-container {
+  display: flex;
+  flex-direction: column;
+}
